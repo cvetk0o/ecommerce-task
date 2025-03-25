@@ -4,6 +4,7 @@ import styles from "./not-found.module.css";
 import mainLogo from "../../public/main-logo.svg";
 import MarkedText from "@/components/MarkedText";
 import { MarkedTextElements } from "@/components/MarkedText/types";
+import paths from "@/utils/paths";
 
 const NotFoundPage: React.FC = () => {
   return (
@@ -26,8 +27,9 @@ const NotFoundPage: React.FC = () => {
         </p>
 
         <p className="body">
-          Please check the URL or <Link href="/">return to homepage</Link> to
-          continue shopping.
+          Please check the URL or{" "}
+          <Link href={paths.homePage()}>return to homepage</Link> to continue
+          shopping.
         </p>
       </div>
     </div>
