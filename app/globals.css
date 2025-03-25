@@ -13,6 +13,12 @@
   --blue: #2983ed;
   --red: #ff1414;
   --cyan600: #018fad;
+
+  --screen-xl: 1200px;
+  --screen-lg: 1200px;
+  --screen-medium: 992px;
+  --screen-sm: 768px;
+  --screen-xs: 576px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +37,12 @@
     --blue: #4499ff;
     --red: #ff3333;
     --cyan600: #00b8d4;
+
+    --screen-xl: 1200px;
+    --screen-lg: 1200px;
+    --screen-medium: 992px;
+    --screen-sm: 768px;
+    --screen-xs: 576px;
   }
 }
 
