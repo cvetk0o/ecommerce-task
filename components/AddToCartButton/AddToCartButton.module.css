@@ -18,7 +18,7 @@
 
 .addToCart:hover .addToCart__text {
     display: block;
-    animation: fadeIn 0.3s ease forwards;
+    animation: fadeIn 1s ease forwards;
 }
 
 .buttonAdded {
@@ -34,6 +34,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
