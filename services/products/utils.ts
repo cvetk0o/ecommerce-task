@@ -5,19 +5,22 @@ const normalizeRatingValue = (rate: number) => {
   return Math.round(rate * 2) / 2;
 };
 
+export const mapProductResponseToProduct = (
+  productResponse: ProductResponse
+) => {
+  return {
+    id: productResponse.id,
+    title: productResponse.title,
+    price: productResponse.price,
+    image: productResponse.image,
+    category: productResponse.category,
+    rating: {
+      rate: normalizeRatingValue(productResponse.rating.rate),
+      count: productResponse.rating.count,
+    },
+  } as Product;
+};
+
 export function mapProductsResponse(productsResponse: ProductResponse[]) {
-  return productsResponse.map(
-    (product) =>
-      ({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        image: product.image,
-        category: product.category,
-        rating: {
-          rate: normalizeRatingValue(product.rating.rate),
-          count: product.rating.count,
-        },
-      } as Product)
-  );
+  return productsResponse.map(mapProductResponseToProduct);
 }
