@@ -185,23 +185,27 @@ a.secondary {
 @media (max-width: 1200px) {
   .primaryLayout__main {
     padding: 8rem;
+    padding-top: 10rem;
   }
 }
 
 @media (max-width: 992px) {
   .primaryLayout__main {
     padding: 6rem;
+    padding-top: 10rem;
   }
 }
 
 @media (max-width: 768px) {
   .primaryLayout__main {
     padding: 4rem;
+    padding-top: 10rem;
   }
 }
 
 @media (max-width: 576px) {
   .primaryLayout__main {
     padding: 2rem;
+    padding-top: 10rem;
   }
 }
