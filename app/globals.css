@@ -9,7 +9,7 @@
   --bodyGray: #757575;
   --primary: #fbb911;
   --primaryHover: #dd9f00;
-  --green: #00d06c;
+  --green: #2DBA7F;
   --blue: #2983ed;
   --red: #ff1414;
   --cyan600: #018fad;
@@ -39,7 +39,7 @@
   --bodyGray: #a0a0a0;
   --primary: #fbb911;
   --primaryHover: #ffc642;
-  --green: #00ff85;
+  --green: #2DBA7F;
   --blue: #4499ff;
   --red: #ff3333;
   --cyan600: #00b8d4;
@@ -350,4 +350,9 @@ a:hover {
   html {
     color-scheme: dark;
   }
+}
+
+
+.boldText {
+  font-weight: 700;
 }
