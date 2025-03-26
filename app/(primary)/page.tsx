@@ -1,20 +1,20 @@
 import MarkedText from "@/components/MarkedText";
 import { MarkedTextElements } from "@/components/MarkedText/types";
-import RecommendedProducts from "@/components/RecommendedProducts";
-import { getAllCategories } from "@/services/categories";
+import ProductsSection from "@/components/ProductsSection";
 import { getFeaturedProducts } from "@/services/products";
+
+const BRAND_NAME = process.env.NEXT_BRAND_NAME || "";
 
 export default async function Home() {
   const products = await getFeaturedProducts();
-  const categories = await getAllCategories();
 
   return (
     <>
-      <MarkedText text="Welcome to Ecommerce" element={MarkedTextElements.h1} />
-      {categories.map((category) => {
-        return <div key={category.slug}>{category.name}</div>;
-      })}
-      <RecommendedProducts products={products} />
+      <MarkedText
+        text={`Welcome to ${BRAND_NAME}`}
+        element={MarkedTextElements.h1}
+      />
+      <ProductsSection sectionTitle="Recommended for you" products={products} />
     </>
   );
 }

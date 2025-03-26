@@ -1,6 +1,6 @@
 import { getProducts } from "../products";
 import { ProductResponse } from "../products/types";
-import { mapCategoriesResponse } from "./utils";
+import { groupByCategory, mapCategoriesResponse } from "./utils";
 
 export async function getAllCategories() {
   try {
@@ -14,7 +14,20 @@ export async function getAllCategories() {
 
     return mapCategoriesResponse(categories);
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
+}
+
+export async function getCategoryDetails(slug: string) {
+  try {
+    const allProducts = await getProducts();
+
+    const categoriesAndProducts = groupByCategory(allProducts);
+
+    return categoriesAndProducts[slug];
+  } catch (error) {
+    console.error("Error fetching categories:", error);
     throw error;
   }
 }
