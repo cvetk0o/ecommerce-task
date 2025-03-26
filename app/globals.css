@@ -351,3 +351,8 @@ a:hover {
     color-scheme: dark;
   }
 }
+
+
+.boldText {
+  font-weight: 700;
+}
