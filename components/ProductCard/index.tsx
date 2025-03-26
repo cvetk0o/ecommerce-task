@@ -2,7 +2,8 @@ import { Product } from "@/types";
 import styles from "./ProductCard.module.css";
 import Image from "next/image";
 import Rating from "../Rating";
-import Button from "../Button";
+import AddToCartButton from "../AddToCartButton";
+import AddToFavourites from "../AddToFavouritesButton";
 
 interface IProductCard {
   product: Product;
@@ -34,11 +35,15 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
           </p>
           <p className="small">{product.title}</p>
         </div>
-
-        <h3 className={styles.productPrice}>
-          {LOCAL_CURRENCY} {product.price}
-        </h3>
-        <Button isLoading={false}>AA</Button>
+        <div>
+          <h3 className={styles.productPrice}>
+            {LOCAL_CURRENCY} {product.price}
+          </h3>
+          <div className={styles.actionButtons}>
+            <AddToCartButton addedToCart={false} />
+            <AddToFavourites inFavourites={false} />
+          </div>
+        </div>
       </div>
     </div>
   );
