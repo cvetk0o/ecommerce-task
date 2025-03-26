@@ -3,6 +3,7 @@ import styles from "./NavigationBar.module.css";
 import logoSrc from "../../public/main-logo.svg";
 import Link from "next/link";
 import paths from "@/utils/paths";
+import ThemeToggle from "../ThemeToggle";
 
 const NavigationBar: React.FC = () => {
   return (
@@ -16,7 +17,9 @@ const NavigationBar: React.FC = () => {
           height={52.96}
         />
       </Link>
-      <div className={styles.navBar__container}>Navigation Bar</div>
+      <div className={styles.navBar__container}>
+        <ThemeToggle />
+      </div>
     </nav>
   );
 };
