@@ -2,6 +2,7 @@ import { Product } from "@/types";
 import styles from "./ProductCard.module.css";
 import Image from "next/image";
 import Rating from "../Rating";
+import Button from "../Button";
 
 interface IProductCard {
   product: Product;
@@ -37,6 +38,7 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
         <h3 className={styles.productPrice}>
           {LOCAL_CURRENCY} {product.price}
         </h3>
+        <Button isLoading={false}>AA</Button>
       </div>
     </div>
   );
