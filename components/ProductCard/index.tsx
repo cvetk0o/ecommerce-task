@@ -1,6 +1,7 @@
 import { Product } from "@/types";
 import styles from "./ProductCard.module.css";
 import Image from "next/image";
+import Rating from "../Rating";
 
 interface IProductCard {
   product: Product;
@@ -23,6 +24,10 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
 
       <div className={styles.infoContainer}>
         <div className={styles.metadata}>
+          <Rating
+            rating={product.rating.rate}
+            numberOfReviews={product.rating.count}
+          />
           <p className={`subtitle boldText`}>
             {product.category.toUpperCase()}
           </p>

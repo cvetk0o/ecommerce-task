@@ -1,0 +1,10 @@
+.rating {
+    display: flex;
+    gap: 8px;
+    width: fit-content;
+    align-items: center;
+}
+
+.rating__numberOfReviews {
+    color: var(--bodyGray);
+}
