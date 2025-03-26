@@ -51,7 +51,16 @@
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    gap: 1.6rem;
+    justify-content: flex-end;
+}
+
+.actionButtons__mobile {
+    display: none;
+}
+
+.hideOnMobile {
+    display: flex;
 }
 
 @media (max-width: 576px) {
@@ -64,5 +73,15 @@
         flex-direction: column;
         gap: .8rem;
         justify-content: space-between;
+    }
+
+    .actionButtons__mobile {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .hideOnMobile {
+        display: none;
     }
 }

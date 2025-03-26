@@ -13,6 +13,9 @@ const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 const ProductCard: React.FC<IProductCard> = ({ product }) => {
   return (
     <div className={styles.productCard}>
+      <div className={styles.actionButtons__mobile}>
+        <AddToFavourites inFavourites={false} />
+      </div>
       <div className={styles.productCard__imgContainer}>
         <Image
           src={product.image}
@@ -41,7 +44,9 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
           </h3>
           <div className={styles.actionButtons}>
             <AddToCartButton addedToCart={false} />
-            <AddToFavourites inFavourites={false} />
+            <div className={styles.hideOnMobile}>
+              <AddToFavourites inFavourites={false} />
+            </div>
           </div>
         </div>
       </div>
