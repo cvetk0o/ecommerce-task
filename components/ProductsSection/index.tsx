@@ -2,16 +2,20 @@ import { Product } from "@/types";
 import MarkedText from "../MarkedText";
 import { MarkedTextElements } from "../MarkedText/types";
 import ProductCard from "../ProductCard";
-import styles from "./RecommendedProducts.module.css";
+import styles from "./ProductsSection.module.css";
 
-interface IRecommendedProducts {
+interface IProductsSection {
+  sectionTitle: string;
   products: Product[];
 }
 
-const RecommendedProducts: React.FC<IRecommendedProducts> = ({ products }) => {
+const ProductsSection: React.FC<IProductsSection> = ({
+  sectionTitle,
+  products,
+}) => {
   return (
     <div className={styles.recomendedProductsContainer}>
-      <MarkedText text="Recommended for you" element={MarkedTextElements.h2} />
+      <MarkedText text={sectionTitle} element={MarkedTextElements.h2} />
       <div className={styles.recommendedProducts}>
         {products.map((product) => (
           <ProductCard product={product} key={product.id} />
@@ -21,4 +25,4 @@ const RecommendedProducts: React.FC<IRecommendedProducts> = ({ products }) => {
   );
 };
 
-export default RecommendedProducts;
+export default ProductsSection;
