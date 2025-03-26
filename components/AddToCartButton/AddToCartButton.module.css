@@ -1,0 +1,40 @@
+.addToCart {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 2.4rem;
+    transition: all 0.3s ease;
+}
+
+.addToCart:hover {
+    width: 14rem;
+    gap: .8rem;
+}
+
+.addToCart__text {
+    display: none;
+    white-space: nowrap;
+}
+
+.addToCart:hover .addToCart__text {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.buttonAdded {
+    background-color: var(--green) !important;
+}
+
+.buttonAdded:hover {
+    background-color: var(--green) !important;
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
