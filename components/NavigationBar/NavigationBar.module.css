@@ -4,9 +4,9 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: #f5f5f5;
+  background-color: var(--lightGray);
   width: 100%;
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--lightGray);
   z-index: 1000;
 }
 
