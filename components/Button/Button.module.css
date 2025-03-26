@@ -13,6 +13,7 @@
     border: none;
     cursor: pointer;
     width: fit-content;
+    min-height: 4.8rem;
 }
 
 .button:hover {
