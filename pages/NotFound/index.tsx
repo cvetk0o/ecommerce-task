@@ -1,23 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./not-found.module.css";
-import mainLogo from "../../public/main-logo.svg";
 import MarkedText from "@/components/MarkedText";
 import { MarkedTextElements } from "@/components/MarkedText/types";
 import paths from "@/utils/paths";
+import MainLogo from "@/components/MainLogo";
 
 const NotFoundPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.heading}>
-          <Image
-            src={mainLogo}
-            alt="Eccomerce task"
-            width={120}
-            height={40}
-            className={styles.logo}
-          />
+          <MainLogo />
 
           <MarkedText text="Page Not Found" element={MarkedTextElements.h1} />
         </div>
