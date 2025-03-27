@@ -5,12 +5,14 @@ import { createContext } from "react";
 export const CartContext = createContext({});
 
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const { cart, addProductToCart, removeCartItem } = useCart();
+  const { cart, addProductToCart, removeCartItem, isProductInCart } = useCart();
+
   return (
     <CartContext.Provider
       value={{
         addProductToCart,
         removeCartItem,
+        isProductInCart,
         cart,
       }}
     >

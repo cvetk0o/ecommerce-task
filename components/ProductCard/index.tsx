@@ -43,7 +43,7 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
             {LOCAL_CURRENCY} {product.price}
           </h3>
           <div className={styles.actionButtons}>
-            <AddToCartButton addedToCart={false} product={product} />
+            <AddToCartButton product={product} />
             <div className={styles.hideOnMobile}>
               <AddToFavourites inFavourites={false} />
             </div>

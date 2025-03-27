@@ -26,6 +26,13 @@ const useCart = () => {
     setCart(updatedCart);
   };
 
+  const isProductInCart = (productId: number) => {
+    if (!cart) {
+      return false;
+    }
+    return !!cart.items.find((item) => item.product.id === productId);
+  };
+
   useEffect(() => {
     getCartDetails();
   }, []);
@@ -34,6 +41,7 @@ const useCart = () => {
     cart,
     addProductToCart,
     removeCartItem,
+    isProductInCart,
   };
 };
 

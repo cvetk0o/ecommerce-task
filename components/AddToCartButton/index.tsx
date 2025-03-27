@@ -11,15 +11,16 @@ import { CartContextType, Product } from "@/types";
 interface IAddToCartButton {
   product: Product;
   isLoading?: boolean;
-  addedToCart: boolean;
 }
 
 const AddToCartButton: React.FC<IAddToCartButton> = ({
   isLoading,
   product,
-  addedToCart,
 }) => {
-  const { addProductToCart } = useContext(CartContext) as CartContextType;
+  const { addProductToCart, isProductInCart } = useContext(
+    CartContext
+  ) as CartContextType;
+  const addedToCart = isProductInCart(product.id);
   return (
     <Button
       isLoading={!!isLoading}
