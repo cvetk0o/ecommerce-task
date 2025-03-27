@@ -10,9 +10,11 @@ export type Product = {
   image: string;
   category: string;
   rating: ProductRating;
+  description: string;
 };
 
 export type CartItem = {
+  id: string;
   product: Product;
   quantity: number;
 };
