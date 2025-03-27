@@ -361,3 +361,10 @@ a:hover {
 .cursorPointer {
   cursor: pointer;
 }
+
+.divider {
+  width: 100%;
+  border: .5px solid var(--lightGray);
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}

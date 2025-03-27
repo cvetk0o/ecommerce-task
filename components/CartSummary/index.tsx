@@ -78,8 +78,13 @@ const CartSummary: React.FC = () => {
     if (!cart || !cart.numberOfItems) {
       return <h3>Empty Cart</h3>;
     }
-    return cart.items.map((cartItem) => {
-      return <CartItemComponent key={cartItem.id} cartItem={cartItem} />;
+    return cart.items.map((cartItem, index) => {
+      return (
+        <div className={styles.cartItem__container} key={cartItem.id}>
+          <CartItemComponent cartItem={cartItem} />
+          {cart.items.length !== index + 1 && <div className="divider" />}
+        </div>
+      );
     });
   };
   return (

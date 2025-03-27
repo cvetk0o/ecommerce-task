@@ -22,9 +22,15 @@
     flex: 1;
     max-width: 40%;
     border-radius: 1rem;
-    border: 1px solid var(--lightGray)
+    border: 1px solid var(--lightGray);
+    height: fit-content;
 }
 
+.cartItem__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
 .cartItem {
     width: 100%;
@@ -40,7 +46,6 @@
     max-height: 12.4rem;
     position: relative;
     overflow: hidden;
-    box-shadow: #fffafa 0px 0px 23px;
 }
 
 .cartItem__img {
