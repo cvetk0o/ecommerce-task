@@ -37,6 +37,7 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     max-width: 12.4rem;
+    max-height: 12.4rem;
     position: relative;
     overflow: hidden;
     box-shadow: #fffafa 0px 0px 23px;
@@ -75,4 +76,41 @@
 
 .cartItem__description {
     color: var(--bodyGray);
+}
+
+.cartItem__prices {
+    display: flex;
+    gap: 3.2rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--lightGray);
+}
+
+.cartItem__priceGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cartItem__priceLabel {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--bodyGray);
+    font-weight: 500;
+}
+
+.cartItem__price {
+    color: var(--foreground);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .cartItem__prices {
+        gap: 2.4rem;
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
+    }
+
+    .cartItem__priceLabel {
+        font-size: 1rem;
+    }
 }
