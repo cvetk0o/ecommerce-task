@@ -11,3 +11,9 @@ export type Product = {
   category: string;
   rating: ProductRating;
 };
+
+export type Cart = {
+  cartId: number;
+  products: Product[];
+  dateCreated: Date;
+};
