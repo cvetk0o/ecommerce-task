@@ -29,5 +29,6 @@ export type Cart = {
 
 export interface CartContextType {
   addProductToCart: (product: Product) => void;
+  removeCartItem: (cartItemId: string) => void;
   cart: Cart;
 }

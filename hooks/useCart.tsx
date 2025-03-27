@@ -1,6 +1,10 @@
 "use client";
 
-import { addItemToCart, getCart } from "@/services/cart";
+import {
+  addItemToCart,
+  getCart,
+  removeCartItem as removeCartItemService,
+} from "@/services/cart";
 import { Cart, Product } from "@/types";
 import { useEffect, useState } from "react";
 
@@ -17,6 +21,11 @@ const useCart = () => {
     setCart(updatedCart);
   };
 
+  const removeCartItem = async (cartItemId: string) => {
+    const updatedCart = await removeCartItemService(cartItemId);
+    setCart(updatedCart);
+  };
+
   useEffect(() => {
     getCartDetails();
   }, []);
@@ -24,6 +33,7 @@ const useCart = () => {
   return {
     cart,
     addProductToCart,
+    removeCartItem,
   };
 };
 

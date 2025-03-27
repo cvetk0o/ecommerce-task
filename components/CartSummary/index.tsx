@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import Image from "next/image";
 import Rating from "../Rating";
+import DeleteProductButton from "../DeleteProductButton";
 
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 
@@ -54,7 +55,7 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
           </div>
         </div>
         <div className={styles.cartItem__actionButtons}>
-          <p>a</p>
+          <DeleteProductButton cartItem={cartItem} />
           <p>b</p>
         </div>
       </div>

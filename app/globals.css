@@ -357,3 +357,7 @@ a:hover {
 .boldText {
   font-weight: 700;
 }
+
+.cursorPointer {
+  cursor: pointer;
+}

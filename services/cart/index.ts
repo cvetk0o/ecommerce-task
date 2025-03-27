@@ -31,3 +31,16 @@ export async function addItemToCart(product: Product) {
     throw error;
   }
 }
+
+export async function removeCartItem(cartItemId: string) {
+  try {
+    const cartResponse = await fetch(`/api/cart?itemId=${cartItemId}`, {
+      method: "DELETE",
+    });
+    const cart = await cartResponse.json();
+    return cart as Cart;
+  } catch (error) {
+    console.error("Error removing cart item:", error);
+    throw error;
+  }
+}

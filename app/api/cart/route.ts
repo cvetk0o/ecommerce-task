@@ -59,3 +59,48 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function DELETE(req: Request) {
+  const cookieStore = await cookies();
+  const sessionId = cookieStore.get("sessionId")?.value;
+
+  if (!sessionId) {
+    return NextResponse.json({ error: "Session not found" }, { status: 401 });
+  }
+
+  try {
+    const { searchParams } = new URL(req.url);
+    const cartItemId = searchParams.get("itemId");
+
+    if (!cartItemId) {
+      return NextResponse.json(
+        { error: "Item ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const cart = cartStore.get(sessionId);
+    if (!cart) {
+      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
+    }
+
+    const itemIndex = cart.items.findIndex((item) => item.id === cartItemId);
+    if (itemIndex === -1) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
+    const removedItem = cart.items[itemIndex];
+    cart.numberOfItems -= removedItem.quantity;
+    cart.totalPrice -= removedItem.product.price * removedItem.quantity;
+
+    cart.items.splice(itemIndex, 1);
+
+    cartStore.set(sessionId, cart);
+    return NextResponse.json(cart);
+  } catch (error) {
+    return NextResponse.json(
+      { error: `Failed to remove item: ${error}` },
+      { status: 500 }
+    );
+  }
+}
