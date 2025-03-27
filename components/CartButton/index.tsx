@@ -10,7 +10,6 @@ const NUMBER_OF_PRODUCTS = 31;
 
 const CartButton: React.FC = () => {
   const theme = useTheme();
-  console.log("THEME", theme);
   return (
     <div className={styles.cartIcon}>
       {NUMBER_OF_PRODUCTS > 0 && (
