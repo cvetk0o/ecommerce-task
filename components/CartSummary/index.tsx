@@ -28,11 +28,14 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
         />
       </div>
       <div className={styles.cartItem__info}>
-        <div>
+        <div className={styles.cartItem__details}>
           <Rating rating={rating.rate} numberOfReviews={rating.count} />
           <p className="subtitle">{title}</p>
           <p className={styles.cartItem__category}>{category}</p>
-          <p className={`small ${styles.cartItem__description}`}>
+          <p
+            className={`small ${styles.cartItem__description}`}
+            title={description}
+          >
             {description}
           </p>
           <div className={styles.cartItem__prices}>
@@ -50,7 +53,10 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
             </div>
           </div>
         </div>
-        <div>Actions</div>
+        <div className={styles.cartItem__actionButtons}>
+          <p>a</p>
+          <p>b</p>
+        </div>
       </div>
     </div>
   );
