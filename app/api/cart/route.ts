@@ -1,4 +1,5 @@
 import { Cart, Product } from "@/types";
+import { generateMockId } from "@/utils/uuid";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -44,7 +45,7 @@ export async function POST(req: Request) {
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      cart.items.push({ product, quantity: 1 });
+      cart.items.push({ id: generateMockId(), product, quantity: 1 });
     }
     cart.numberOfItems += 1;
     cart.totalPrice += product.price;

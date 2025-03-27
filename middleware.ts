@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-function generateMockId() {
-  const timestamp = Date.now().toString(36);
-  const randomPart = Math.random().toString(36).substring(2, 15);
-  return `${timestamp}-${randomPart}`;
-}
+import { generateMockId } from "./utils/uuid";
 
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
