@@ -2,19 +2,17 @@
 import useCart from "@/hooks/useCart";
 import { createContext } from "react";
 
-interface CartContextType {
-  testValue: number;
-}
-
-export const CartContext = createContext<CartContextType>({
-  testValue: 0,
-});
+export const CartContext = createContext({});
 
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const { cart } = useCart();
-  console.log("CARTTT:", cart);
+  const { cart, addProductToCart } = useCart();
   return (
-    <CartContext.Provider value={{ testValue: 0 }}>
+    <CartContext.Provider
+      value={{
+        addProductToCart,
+        cart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

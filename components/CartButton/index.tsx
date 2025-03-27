@@ -1,3 +1,4 @@
+"use client";
 import paths from "@/utils/paths";
 import Link from "next/link";
 import CartIcon from "../../public/cart.svg";
@@ -5,18 +6,20 @@ import CartWhiteIcon from "../../public/cartWhite.svg";
 import Image from "next/image";
 import { useTheme } from "@/hooks/useTheme";
 import styles from "./CartButton.module.css";
-
-const NUMBER_OF_PRODUCTS = 31;
+import { useContext } from "react";
+import { CartContext } from "@/contexts/CartContext";
+import { CartContextType } from "@/types";
 
 const CartButton: React.FC = () => {
   const theme = useTheme();
+  const { cart } = useContext(CartContext) as CartContextType;
   return (
     <div className={styles.cartIcon}>
-      {NUMBER_OF_PRODUCTS > 0 && (
+      {cart?.numberOfItems > 0 && (
         <div className={styles.cartIcon__numberOfProducts}>
           <p className="small">
             {" "}
-            {NUMBER_OF_PRODUCTS >= 99 ? "99+" : NUMBER_OF_PRODUCTS}
+            {cart?.numberOfItems >= 99 ? "99+" : cart?.numberOfItems}
           </p>
         </div>
       )}

@@ -12,8 +12,20 @@ export type Product = {
   rating: ProductRating;
 };
 
-export type Cart = {
-  cartId: number;
-  products: Product[];
-  dateCreated: Date;
+export type CartItem = {
+  product: Product;
+  quantity: number;
 };
+
+export type Cart = {
+  cartId: string;
+  items: CartItem[];
+  dateCreated: Date;
+  numberOfItems: number;
+  totalPrice: number;
+};
+
+export interface CartContextType {
+  addProductToCart: (product: Product) => void;
+  cart: Cart;
+}
