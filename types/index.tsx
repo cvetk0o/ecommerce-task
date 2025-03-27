@@ -28,8 +28,12 @@ export type Cart = {
 };
 
 export interface CartContextType {
-  addProductToCart: (product: Product) => void;
-  removeCartItem: (cartItemId: string) => void;
+  addProductToCart: (product: Product) => Promise<void>;
+  removeCartItem: (cartItemId: string) => Promise<void>;
   isProductInCart: (productId: number) => boolean;
+  updateItemQuantity: (
+    cartItemId: string,
+    newQuantity: number
+  ) => Promise<void>;
   cart: Cart;
 }

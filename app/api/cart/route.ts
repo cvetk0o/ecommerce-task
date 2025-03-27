@@ -104,3 +104,54 @@ export async function DELETE(req: Request) {
     );
   }
 }
+
+export async function PATCH(req: Request) {
+  const cookieStore = await cookies();
+  const sessionId = cookieStore.get("sessionId")?.value;
+
+  if (!sessionId) {
+    return NextResponse.json({ error: "Session not found" }, { status: 401 });
+  }
+
+  try {
+    const { searchParams } = new URL(req.url);
+    const cartItemId = searchParams.get("itemId");
+    const { quantity } = await req.json();
+
+    if (!cartItemId) {
+      return NextResponse.json(
+        { error: "Item ID is required" },
+        { status: 400 }
+      );
+    }
+
+    if (typeof quantity !== "number" || quantity < 1) {
+      return NextResponse.json({ error: "Invalid quantity" }, { status: 400 });
+    }
+
+    const cart = cartStore.get(sessionId);
+    if (!cart) {
+      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
+    }
+
+    const cartItem = cart.items.find((item) => item.id === cartItemId);
+    if (!cartItem) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
+    const quantityDiff = quantity - cartItem.quantity;
+
+    cart.numberOfItems += quantityDiff;
+    cart.totalPrice += cartItem.product.price * quantityDiff;
+
+    cartItem.quantity = quantity;
+
+    cartStore.set(sessionId, cart);
+    return NextResponse.json(cart);
+  } catch (error) {
+    return NextResponse.json(
+      { error: `Failed to update quantity: ${error}` },
+      { status: 500 }
+    );
+  }
+}

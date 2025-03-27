@@ -44,3 +44,23 @@ export async function removeCartItem(cartItemId: string) {
     throw error;
   }
 }
+
+export async function updateCartItemQuantity(
+  cartItemId: string,
+  newQuantity: number
+) {
+  try {
+    const cartResponse = await fetch(`/api/cart?itemId=${cartItemId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ quantity: newQuantity }),
+    });
+    const cart = await cartResponse.json();
+    return cart as Cart;
+  } catch (error) {
+    console.error("Error updateing quantity", error);
+    throw error;
+  }
+}

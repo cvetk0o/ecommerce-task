@@ -4,6 +4,7 @@ import {
   addItemToCart,
   getCart,
   removeCartItem as removeCartItemService,
+  updateCartItemQuantity,
 } from "@/services/cart";
 import { Cart, Product } from "@/types";
 import { useEffect, useState } from "react";
@@ -30,7 +31,15 @@ const useCart = () => {
     if (!cart) {
       return false;
     }
-    return !!cart.items.find((item) => item.product.id === productId);
+    return !!cart.items?.find((item) => item.product.id === productId);
+  };
+
+  const updateItemQuantity = async (
+    cartItemId: string,
+    newQuantity: number
+  ) => {
+    const updatedCart = await updateCartItemQuantity(cartItemId, newQuantity);
+    setCart(updatedCart);
   };
 
   useEffect(() => {
@@ -42,6 +51,7 @@ const useCart = () => {
     addProductToCart,
     removeCartItem,
     isProductInCart,
+    updateItemQuantity,
   };
 };
 

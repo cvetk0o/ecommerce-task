@@ -7,13 +7,17 @@ import { CartContext } from "@/contexts/CartContext";
 import Image from "next/image";
 import Rating from "../Rating";
 import DeleteProductButton from "../DeleteProductButton";
+import QuantityControl from "../QuantityControl";
 
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 
 const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
   const {
     product: { title, image, description, category, rating, price },
+    quantity,
   } = cartItem;
+
+  const { updateItemQuantity } = useContext(CartContext) as CartContextType;
 
   const totalPrice = cartItem.quantity * price;
   return (
@@ -56,7 +60,11 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
         </div>
         <div className={styles.cartItem__actionButtons}>
           <DeleteProductButton cartItem={cartItem} />
-          <p>b</p>
+          <QuantityControl
+            quantity={quantity}
+            onIncrease={() => updateItemQuantity(cartItem.id, quantity + 1)}
+            onDecrease={() => updateItemQuantity(cartItem.id, quantity - 1)}
+          />
         </div>
       </div>
     </div>
