@@ -90,3 +90,9 @@
     padding: 1.6rem 2rem;
   }
 }
+
+.navBar__actionButtons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}

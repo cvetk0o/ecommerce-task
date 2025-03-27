@@ -6,6 +6,7 @@ import ThemeToggle from "../ThemeToggle";
 import MainLogo from "../MainLogo";
 import { Category } from "@/services/categories/types";
 import { useState } from "react";
+import CartButton from "../CartButton";
 
 interface INavigationBar {
   categories: Category[];
@@ -51,7 +52,10 @@ const NavigationBar: React.FC<INavigationBar> = ({ categories }) => {
         >
           {renderCategories()}
         </div>
-        <ThemeToggle />
+        <div className={styles.navBar__actionButtons}>
+          <CartButton />
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );
