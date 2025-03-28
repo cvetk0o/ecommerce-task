@@ -379,3 +379,8 @@ a:hover {
 .redText {
   color: var(--red);
 }
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
