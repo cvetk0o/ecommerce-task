@@ -3,8 +3,10 @@
     justify-content: center;
     border-radius: 8px;
     padding: .8rem 1.6rem;
+    font-family: var(--font-family);
     font-size: 1.6rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 100%;
     color: var(--black);
     transition: all 500ms;
@@ -29,4 +31,29 @@
 
 .fullWidth {
     width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .button {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .button {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .button {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .button {
+        font-size: 1.2rem;
+        letter-spacing: -0.01em;
+    }
 }
