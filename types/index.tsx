@@ -24,6 +24,7 @@ export type Cart = {
   items: CartItem[];
   dateCreated: Date;
   numberOfItems: number;
+  subTotalPrice: number;
   totalPrice: number;
   discount: {
     percentage: number;
@@ -40,5 +41,6 @@ export interface CartContextType {
     cartItemId: string,
     newQuantity: number
   ) => Promise<void>;
+  applyPromoCode: (promoCode: string) => Promise<void>;
   cart: Cart;
 }

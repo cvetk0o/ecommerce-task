@@ -64,3 +64,20 @@ export async function updateCartItemQuantity(
     throw error;
   }
 }
+
+export async function applyPromoCodeService(cartId: string, promoCode: string) {
+  try {
+    const response = await fetch(`/api/cart?applyPromoCode`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ promoCode, cartId }),
+    });
+    const cart = await response.json();
+    return cart as Cart;
+  } catch (error) {
+    console.error("Error applying promo code:", error);
+    throw error;
+  }
+}

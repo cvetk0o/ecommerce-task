@@ -5,6 +5,7 @@ import {
   getCart,
   removeCartItem as removeCartItemService,
   updateCartItemQuantity,
+  applyPromoCodeService,
 } from "@/services/cart";
 import { Cart, Product } from "@/types";
 import { useEffect, useState } from "react";
@@ -42,6 +43,14 @@ const useCart = () => {
     setCart(updatedCart);
   };
 
+  const applyPromoCode = async (promoCode: string) => {
+    if (!cart) {
+      return;
+    }
+    const updatedCart = await applyPromoCodeService(cart.cartId, promoCode);
+    setCart(updatedCart);
+  };
+
   useEffect(() => {
     getCartDetails();
   }, []);
@@ -52,6 +61,7 @@ const useCart = () => {
     removeCartItem,
     isProductInCart,
     updateItemQuantity,
+    applyPromoCode,
   };
 };
 

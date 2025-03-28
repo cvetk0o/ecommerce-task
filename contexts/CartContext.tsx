@@ -11,6 +11,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
     removeCartItem,
     isProductInCart,
     updateItemQuantity,
+    applyPromoCode,
   } = useCart();
 
   return (
@@ -20,6 +21,7 @@ const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
         removeCartItem,
         isProductInCart,
         updateItemQuantity,
+        applyPromoCode,
         cart,
       }}
     >
