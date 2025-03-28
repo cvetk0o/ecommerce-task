@@ -1,7 +1,13 @@
 import { Cart, Product } from "@/types";
-import { generateMockId } from "@/utils/uuid";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import {
+  addProductToCart,
+  applyPromoCode,
+  initializeCart,
+  removeProductFromCart,
+  updateProductQuantity,
+} from "./cartOperations";
 
 const cartStore = new Map<string, Cart>();
 
@@ -30,30 +36,10 @@ export async function POST(req: Request) {
 
     let cart = cartStore.get(sessionId);
     if (!cart) {
-      cart = {
-        cartId: sessionId,
-        items: [],
-        dateCreated: new Date(),
-        numberOfItems: 0,
-        totalPrice: 0,
-        discount: {
-          percentage: 0,
-          amount: 0,
-        },
-        deliveryFee: 0,
-      } as Cart;
+      cart = initializeCart(sessionId);
       cartStore.set(sessionId, cart);
     }
-    const existingItem = cart.items.find(
-      (item) => item.product.id === product.id
-    );
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.items.push({ id: generateMockId(), product, quantity: 1 });
-    }
-    cart.numberOfItems += 1;
-    cart.totalPrice += product.price;
+    cart = addProductToCart(cart, product);
 
     cartStore.set(sessionId, cart);
     return NextResponse.json(cart);
@@ -84,21 +70,12 @@ export async function DELETE(req: Request) {
       );
     }
 
-    const cart = cartStore.get(sessionId);
+    let cart = cartStore.get(sessionId);
     if (!cart) {
       return NextResponse.json({ error: "Cart not found" }, { status: 404 });
     }
 
-    const itemIndex = cart.items.findIndex((item) => item.id === cartItemId);
-    if (itemIndex === -1) {
-      return NextResponse.json({ error: "Item not found" }, { status: 404 });
-    }
-
-    const removedItem = cart.items[itemIndex];
-    cart.numberOfItems -= removedItem.quantity;
-    cart.totalPrice -= removedItem.product.price * removedItem.quantity;
-
-    cart.items.splice(itemIndex, 1);
+    cart = removeProductFromCart(cart, cartItemId);
 
     cartStore.set(sessionId, cart);
     return NextResponse.json(cart);
@@ -121,7 +98,24 @@ export async function PATCH(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const cartItemId = searchParams.get("itemId");
-    const { quantity } = await req.json();
+    const isPromoCode = searchParams.get("applyPromoCode") !== null;
+
+    const requestData = await req.json();
+    let cart = cartStore.get(sessionId);
+    if (!cart) {
+      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
+    }
+
+    if (isPromoCode) {
+      const { promoCode } = requestData;
+
+      cart = applyPromoCode(cart, promoCode);
+
+      cartStore.set(sessionId, cart);
+      return NextResponse.json(cart);
+    }
+
+    const { quantity } = requestData;
 
     if (!cartItemId) {
       return NextResponse.json(
@@ -134,22 +128,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json({ error: "Invalid quantity" }, { status: 400 });
     }
 
-    const cart = cartStore.get(sessionId);
-    if (!cart) {
-      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
-    }
-
-    const cartItem = cart.items.find((item) => item.id === cartItemId);
-    if (!cartItem) {
-      return NextResponse.json({ error: "Item not found" }, { status: 404 });
-    }
-
-    const quantityDiff = quantity - cartItem.quantity;
-
-    cart.numberOfItems += quantityDiff;
-    cart.totalPrice += cartItem.product.price * quantityDiff;
-
-    cartItem.quantity = quantity;
+    cart = updateProductQuantity(cart, cartItemId, quantity);
 
     cartStore.set(sessionId, cart);
     return NextResponse.json(cart);
