@@ -9,6 +9,7 @@ import Rating from "../Rating";
 import DeleteProductButton from "../DeleteProductButton";
 import QuantityControl from "../QuantityControl";
 import Button from "../Button";
+import ApplyDiscount from "../ApplyDiscount";
 
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 
@@ -20,7 +21,7 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
 
   const { updateItemQuantity } = useContext(CartContext) as CartContextType;
 
-  const totalPrice = cartItem.quantity * price;
+  const totalPrice = Number(cartItem.quantity * price).toFixed(2);
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__imgContainer}>
@@ -97,7 +98,7 @@ const CartSummary: React.FC = () => {
           <div className={styles.summaryData}>
             <p className="small">SubTotal</p>
             <p className="small boldText">
-              {LOCAL_CURRENCY} {cart.totalPrice}
+              {LOCAL_CURRENCY} {cart.subTotalPrice}
             </p>
           </div>
           <div className={styles.summaryData}>
@@ -127,6 +128,7 @@ const CartSummary: React.FC = () => {
             {LOCAL_CURRENCY} {cart.totalPrice}
           </p>
         </div>
+        <ApplyDiscount />
         <Button fullWidth={true}>Go to Checkout</Button>
       </div>
     </div>
