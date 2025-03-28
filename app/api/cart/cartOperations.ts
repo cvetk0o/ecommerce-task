@@ -60,11 +60,22 @@ export function updateProductQuantity(
 }
 
 export function applyPromoCode(cart: Cart, promoCode: string): Cart {
+  if (promoCode === "") {
+    cart.discount = {
+      percentage: 0,
+      amount: 0,
+    };
+    cart.promoCode = undefined;
+
+    return calculateCartTotals(cart);
+  }
+
   if (DISCOUNT_CODES.includes(promoCode)) {
     cart.discount = {
       percentage: 20,
       amount: 0,
     };
+    cart.promoCode = promoCode;
   } else {
     throw new Error("Invalid promo code");
   }

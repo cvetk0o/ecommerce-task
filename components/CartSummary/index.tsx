@@ -5,7 +5,7 @@ import styles from "./CartSummary.module.css";
 import { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import Button from "../Button";
-import ApplyDiscount from "../ApplyDiscount";
+import ApplyPromoCode from "../ApplyPromoCode";
 import CartItemComponent from "../CartItemComponent";
 
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
@@ -65,7 +65,7 @@ const CartSummary: React.FC = () => {
             {LOCAL_CURRENCY} {cart.totalPrice}
           </p>
         </div>
-        <ApplyDiscount />
+        <ApplyPromoCode />
         <Button fullWidth={true}>Go to Checkout</Button>
       </div>
     </div>

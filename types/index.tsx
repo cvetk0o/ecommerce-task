@@ -31,6 +31,7 @@ export type Cart = {
     amount: number;
   };
   deliveryFee: number;
+  promoCode?: string;
 };
 
 export interface CartContextType {
