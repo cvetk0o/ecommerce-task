@@ -368,3 +368,14 @@ a:hover {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
 }
+
+.divider__thiner {
+  width: 100%;
+  border: .5px solid var(--lightGray);
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.redText {
+  color: var(--red);
+}
