@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   type?: "submit" | "button";
   isLoading?: boolean;
+  fullWidth?: boolean;
 }
 
 function Button({
@@ -19,12 +20,15 @@ function Button({
   disabled,
   type,
   className,
+  fullWidth,
   ...props
 }: ButtonProps) {
   return (
     <button
       {...props}
-      className={`${styles.button} ${className || ""}`}
+      className={`${styles.button} ${className || ""} ${
+        fullWidth ? styles.fullWidth : ""
+      }`}
       onClick={onClick}
       type={type || "button"}
       disabled={disabled || isLoading}

@@ -127,7 +127,7 @@ const CartSummary: React.FC = () => {
             {LOCAL_CURRENCY} {cart.totalPrice}
           </p>
         </div>
-        <Button>Go to Checkout</Button>
+        <Button fullWidth={true}>Go to Checkout</Button>
       </div>
     </div>
   );
