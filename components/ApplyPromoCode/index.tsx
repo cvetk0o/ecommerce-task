@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import Button from "../Button";
 import TextInput from "../TextInput";
 import styles from "./ApplyPromoCode.module.css";
@@ -10,10 +10,30 @@ import { CartContext } from "@/contexts/CartContext";
 const ApplyPromoCode: React.FC = () => {
   const { applyPromoCode, cart } = useContext(CartContext) as CartContextType;
   const [promoCode, setPromoCode] = useState<string>("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const isPromoCodeApplied = !!cart?.promoCode;
+
+  const handleApplyPromoCode = () => {
+    if (isPromoCodeApplied) {
+      setPromoCode("");
+      applyPromoCode("");
+      return;
+    }
+
+    applyPromoCode(promoCode);
+  };
+
+  useEffect(() => {
+    if (isPromoCodeApplied) {
+      setIsSuccess(true);
+      setTimeout(() => setIsSuccess(false), 500);
+    }
+  }, [isPromoCodeApplied, isSuccess]);
   return (
-    <div className={styles.applyDiscount}>
+    <div
+      className={`${styles.applyDiscount} ${isSuccess ? styles.success : ""}`}
+    >
       <TextInput
         type="text"
         value={isPromoCodeApplied ? cart.promoCode : promoCode}
@@ -23,15 +43,9 @@ const ApplyPromoCode: React.FC = () => {
         icon={<PromoCodeIcon />}
         placeholder="Enter Promo code"
         disabled={isPromoCodeApplied}
+        inputClassName={isPromoCodeApplied ? styles.inputSuccess : ""}
       />
-      <Button
-        onClick={() => {
-          if (isPromoCodeApplied) {
-            setPromoCode("");
-          }
-          applyPromoCode(isPromoCodeApplied ? "" : promoCode);
-        }}
-      >
+      <Button onClick={handleApplyPromoCode}>
         {isPromoCodeApplied ? "Cancel" : "Apply"}
       </Button>
     </div>
