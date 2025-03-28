@@ -1,0 +1,32 @@
+.quantityControl {
+    display: flex;
+    align-items: center;
+    background-color: var(--gray50);
+    border-radius: 100px;
+    padding: 0.4rem;
+    width: fit-content;
+}
+
+.quantityControl__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: none;
+    background: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--foreground);
+}
+
+.quantityControl__button:disabled {
+    color: var(--bodyGray);
+    cursor: not-allowed;
+}
+
+.quantityControl__value {
+    min-width: 2.4rem;
+    text-align: center;
+    font-size: 1.4rem;
+}

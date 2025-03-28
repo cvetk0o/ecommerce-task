@@ -18,6 +18,7 @@ export const mapProductResponseToProduct = (
       rate: normalizeRatingValue(productResponse.rating.rate),
       count: productResponse.rating.count,
     },
+    description: productResponse.description,
   } as Product;
 };
 

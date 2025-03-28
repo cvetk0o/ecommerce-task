@@ -21,6 +21,7 @@
     max-width: 26rem;
     position: relative;
     overflow: hidden;
+    box-shadow: #fffafa 0px 0px 23px;
 }
 
 .productCard__img {
@@ -72,7 +73,6 @@
     .productCard {
         position: relative;
         width: 100%;
-        max-width: 19.5rem;
         padding: 1.2rem;
         display: flex;
         flex-direction: column;

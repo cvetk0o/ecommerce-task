@@ -1,22 +1,33 @@
+"use client";
 import Button from "../Button";
 import CartIcon from "../../public/cartPlus.svg";
 import CheckIcon from "../../public/checked.svg";
 import styles from "./AddToCartButton.module.css";
 import Image from "next/image";
+import { useContext } from "react";
+import { CartContext } from "@/contexts/CartContext";
+import { CartContextType, Product } from "@/types";
 
 interface IAddToCartButton {
+  product: Product;
   isLoading?: boolean;
-  addedToCart: boolean;
 }
 
 const AddToCartButton: React.FC<IAddToCartButton> = ({
   isLoading,
-  addedToCart,
+  product,
 }) => {
+  const { addProductToCart, isProductInCart } = useContext(
+    CartContext
+  ) as CartContextType;
+  const addedToCart = isProductInCart(product.id);
   return (
     <Button
       isLoading={!!isLoading}
       className={addedToCart ? styles.buttonAdded : ""}
+      onClick={() => {
+        addProductToCart(product);
+      }}
     >
       <div className={styles.addToCart}>
         <Image
