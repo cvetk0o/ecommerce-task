@@ -36,6 +36,11 @@ export async function POST(req: Request) {
         dateCreated: new Date(),
         numberOfItems: 0,
         totalPrice: 0,
+        discount: {
+          percentage: 0,
+          amount: 0,
+        },
+        deliveryFee: 0,
       } as Cart;
       cartStore.set(sessionId, cart);
     }

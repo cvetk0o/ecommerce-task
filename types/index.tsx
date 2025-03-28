@@ -25,6 +25,11 @@ export type Cart = {
   dateCreated: Date;
   numberOfItems: number;
   totalPrice: number;
+  discount: {
+    percentage: number;
+    amount: number;
+  };
+  deliveryFee: number;
 };
 
 export interface CartContextType {
