@@ -24,6 +24,9 @@ export async function addItemToCart(product: Product) {
     });
 
     const cart = await cartResponse.json();
+    if (!cartResponse.ok) {
+      throw new Error(cart.error || "Failed to add item");
+    }
 
     return cart as Cart;
   } catch (error) {
@@ -38,6 +41,9 @@ export async function removeCartItem(cartItemId: string) {
       method: "DELETE",
     });
     const cart = await cartResponse.json();
+    if (!cartResponse.ok) {
+      throw new Error(cart.error || "Failed to remove item");
+    }
     return cart as Cart;
   } catch (error) {
     console.error("Error removing cart item:", error);
@@ -58,6 +64,9 @@ export async function updateCartItemQuantity(
       body: JSON.stringify({ quantity: newQuantity }),
     });
     const cart = await cartResponse.json();
+    if (!cartResponse.ok) {
+      throw new Error(cart.error || "Failed to update quantity");
+    }
     return cart as Cart;
   } catch (error) {
     console.error("Error updateing quantity", error);
@@ -75,6 +84,9 @@ export async function applyPromoCodeService(cartId: string, promoCode: string) {
       body: JSON.stringify({ promoCode, cartId }),
     });
     const cart = await response.json();
+    if (!response.ok) {
+      throw new Error(cart.error || "Failed to apply promo code");
+    }
     return cart as Cart;
   } catch (error) {
     console.error("Error applying promo code:", error);
