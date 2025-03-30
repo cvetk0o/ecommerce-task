@@ -41,7 +41,9 @@ export interface CartContextType {
   updateItemQuantity: (
     cartItemId: string,
     newQuantity: number
-  ) => Promise<void>;
-  applyPromoCode: (promoCode: string) => Promise<void>;
+  ) => Promise<[string | null, Cart | null]>;
+  applyPromoCode: (promoCode: string) => Promise<[string | null, Cart | null]>;
   cart: Cart;
 }
+
+export type ToastType = "success" | "error" | "info";
