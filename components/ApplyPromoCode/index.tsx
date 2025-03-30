@@ -1,27 +1,35 @@
 "use client";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Button from "../Button";
 import TextInput from "../TextInput";
 import styles from "./ApplyPromoCode.module.css";
 import PromoCodeIcon from "../SVGIcons/PromoCodeIcon";
-import { CartContextType } from "@/types";
-import { CartContext } from "@/contexts/CartContext";
+import { useCartContext } from "@/contexts/CartContext";
+import { useToast } from "@/contexts/ToastContext";
 
 const ApplyPromoCode: React.FC = () => {
-  const { applyPromoCode, cart } = useContext(CartContext) as CartContextType;
+  const { applyPromoCode, cart } = useCartContext();
+  const { showToast } = useToast();
   const [promoCode, setPromoCode] = useState<string>("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const isPromoCodeApplied = !!cart?.promoCode;
 
-  const handleApplyPromoCode = () => {
+  const handleApplyPromoCode = async () => {
     if (isPromoCodeApplied) {
       setPromoCode("");
       applyPromoCode("");
       return;
     }
 
-    applyPromoCode(promoCode);
+    const [error] = await applyPromoCode(promoCode);
+
+    if (error) {
+      setPromoCode("");
+      applyPromoCode("");
+      showToast("Failed to apply promo code", "error");
+      return;
+    }
   };
 
   useEffect(() => {

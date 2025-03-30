@@ -1,9 +1,7 @@
 "use client";
 
-import { CartContextType } from "@/types";
 import styles from "./CartSummary.module.css";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
+import { useCartContext } from "@/contexts/CartContext";
 import Button from "../Button";
 import ApplyPromoCode from "../ApplyPromoCode";
 import CartItemComponent from "../CartItemComponent";
@@ -11,7 +9,7 @@ import CartItemComponent from "../CartItemComponent";
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 
 const CartSummary: React.FC = () => {
-  const { cart } = useContext(CartContext) as CartContextType;
+  const { cart } = useCartContext();
 
   if (!cart || !cart.numberOfItems) {
     return <h3>Empty Cart</h3>;

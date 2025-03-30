@@ -1,13 +1,14 @@
 "use client";
 
-import { CartContext } from "@/contexts/CartContext";
-import { CartContextType, CartItem } from "@/types";
+import { useCartContext } from "@/contexts/CartContext";
+import { CartItem } from "@/types";
 import Image from "next/image";
-import { useContext } from "react";
 import Rating from "../Rating";
 import DeleteProductButton from "../DeleteProductButton";
 import QuantityControl from "../QuantityControl";
 import styles from "./CartItemComponent.module.css";
+import { useToast } from "@/contexts/ToastContext";
+import { useMemo } from "react";
 
 const LOCAL_CURRENCY = process.env.NEXT_LOCAL_CURRENCY || "USD";
 
@@ -17,9 +18,21 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
     quantity,
   } = cartItem;
 
-  const { updateItemQuantity } = useContext(CartContext) as CartContextType;
+  const { updateItemQuantity } = useCartContext();
+  const { showToast } = useToast();
 
-  const totalPrice = Number(cartItem.quantity * price).toFixed(2);
+  const handleQuantityChange = async (newQuantity: number) => {
+    const [error] = await updateItemQuantity(cartItem.id, newQuantity);
+    if (error) {
+      showToast(error, "error");
+    }
+  };
+
+  const totalPrice = useMemo(
+    () => Number(quantity * price).toFixed(2),
+    [quantity, price]
+  );
+
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItem__imgContainer}>
@@ -62,8 +75,8 @@ const CartItemComponent = ({ cartItem }: { cartItem: CartItem }) => {
           <DeleteProductButton cartItem={cartItem} />
           <QuantityControl
             quantity={quantity}
-            onIncrease={() => updateItemQuantity(cartItem.id, quantity + 1)}
-            onDecrease={() => updateItemQuantity(cartItem.id, quantity - 1)}
+            onIncrease={() => handleQuantityChange(quantity + 1)}
+            onDecrease={() => handleQuantityChange(quantity - 1)}
           />
         </div>
       </div>

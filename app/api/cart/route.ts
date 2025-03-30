@@ -134,7 +134,7 @@ export async function PATCH(req: Request) {
     return NextResponse.json(cart);
   } catch (error) {
     return NextResponse.json(
-      { error: `Failed to update quantity: ${error}` },
+      { error: `Failed to patch Cart: ${error}` },
       { status: 500 }
     );
   }

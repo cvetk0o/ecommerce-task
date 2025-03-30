@@ -33,15 +33,18 @@ export type Cart = {
   deliveryFee: number;
   promoCode?: string;
 };
+export type CartOperationResult = [string | null, Cart | null];
 
 export interface CartContextType {
-  addProductToCart: (product: Product) => Promise<void>;
-  removeCartItem: (cartItemId: string) => Promise<void>;
+  addProductToCart: (product: Product) => Promise<CartOperationResult>;
+  removeCartItem: (cartItemId: string) => Promise<CartOperationResult>;
   isProductInCart: (productId: number) => boolean;
   updateItemQuantity: (
     cartItemId: string,
     newQuantity: number
-  ) => Promise<void>;
-  applyPromoCode: (promoCode: string) => Promise<void>;
+  ) => Promise<CartOperationResult>;
+  applyPromoCode: (promoCode: string) => Promise<CartOperationResult>;
   cart: Cart;
 }
+
+export type ToastType = "success" | "error" | "info";

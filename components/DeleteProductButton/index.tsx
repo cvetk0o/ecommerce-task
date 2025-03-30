@@ -1,9 +1,9 @@
 "use client";
 import TrashIcon from "../../public/trashcan.svg";
 import Image from "next/image";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
-import { CartContextType, CartItem } from "@/types";
+import { useCartContext } from "@/contexts/CartContext";
+import { CartItem } from "@/types";
+import { useToast } from "@/contexts/ToastContext";
 
 interface IDeleteProductButtonProps {
   cartItem: CartItem;
@@ -12,14 +12,18 @@ interface IDeleteProductButtonProps {
 const DeleteProductButton: React.FC<IDeleteProductButtonProps> = ({
   cartItem,
 }) => {
-  const { removeCartItem } = useContext(CartContext) as CartContextType;
+  const { removeCartItem } = useCartContext();
+  const { showToast } = useToast();
+
+  const handleRemoveCartItem = async () => {
+    const [error] = await removeCartItem(cartItem.id);
+
+    if (error) {
+      showToast("Failed to remove cart item:", "error");
+    }
+  };
   return (
-    <div
-      className="cursorPointer"
-      onClick={() => {
-        removeCartItem(cartItem.id);
-      }}
-    >
+    <div className="cursorPointer" onClick={handleRemoveCartItem}>
       <Image alt="cart" src={TrashIcon} width={24} height={24} />
     </div>
   );
