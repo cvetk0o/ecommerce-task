@@ -4,9 +4,8 @@ import CartIcon from "../../public/cartPlus.svg";
 import CheckIcon from "../../public/checked.svg";
 import styles from "./AddToCartButton.module.css";
 import Image from "next/image";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
-import { CartContextType, Product } from "@/types";
+import { useCartContext } from "@/contexts/CartContext";
+import { Product } from "@/types";
 
 interface IAddToCartButton {
   product: Product;
@@ -17,9 +16,7 @@ const AddToCartButton: React.FC<IAddToCartButton> = ({
   isLoading,
   product,
 }) => {
-  const { addProductToCart, isProductInCart } = useContext(
-    CartContext
-  ) as CartContextType;
+  const { addProductToCart, isProductInCart } = useCartContext();
   const addedToCart = isProductInCart(product.id);
   return (
     <Button

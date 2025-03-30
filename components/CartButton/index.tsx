@@ -6,13 +6,11 @@ import CartWhiteIcon from "../../public/cartWhite.svg";
 import Image from "next/image";
 import { useTheme } from "@/hooks/useTheme";
 import styles from "./CartButton.module.css";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
-import { CartContextType } from "@/types";
+import { useCartContext } from "@/contexts/CartContext";
 
 const CartButton: React.FC = () => {
   const theme = useTheme();
-  const { cart } = useContext(CartContext) as CartContextType;
+  const { cart } = useCartContext();
   return (
     <div className={styles.cartIcon}>
       {cart?.numberOfItems > 0 && (

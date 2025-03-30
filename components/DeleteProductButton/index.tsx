@@ -1,9 +1,8 @@
 "use client";
 import TrashIcon from "../../public/trashcan.svg";
 import Image from "next/image";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/CartContext";
-import { CartContextType, CartItem } from "@/types";
+import { useCartContext } from "@/contexts/CartContext";
+import { CartItem } from "@/types";
 
 interface IDeleteProductButtonProps {
   cartItem: CartItem;
@@ -12,7 +11,7 @@ interface IDeleteProductButtonProps {
 const DeleteProductButton: React.FC<IDeleteProductButtonProps> = ({
   cartItem,
 }) => {
-  const { removeCartItem } = useContext(CartContext) as CartContextType;
+  const { removeCartItem } = useCartContext();
   return (
     <div
       className="cursorPointer"
