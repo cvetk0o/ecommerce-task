@@ -6,6 +6,7 @@ import styles from "./AddToCartButton.module.css";
 import Image from "next/image";
 import { useCartContext } from "@/contexts/CartContext";
 import { Product } from "@/types";
+import { useToast } from "@/contexts/ToastContext";
 
 interface IAddToCartButton {
   product: Product;
@@ -17,14 +18,20 @@ const AddToCartButton: React.FC<IAddToCartButton> = ({
   product,
 }) => {
   const { addProductToCart, isProductInCart } = useCartContext();
+  const { showToast } = useToast();
   const addedToCart = isProductInCart(product.id);
+  const handleRemoveCartItem = async () => {
+    const [error] = await addProductToCart(product);
+
+    if (error) {
+      showToast("Failed to Add product to Cart:", "error");
+    }
+  };
   return (
     <Button
       isLoading={!!isLoading}
       className={addedToCart ? styles.buttonAdded : ""}
-      onClick={() => {
-        addProductToCart(product);
-      }}
+      onClick={handleRemoveCartItem}
     >
       <div className={styles.addToCart}>
         <Image
