@@ -21,9 +21,11 @@ export function addProductToWishlist(
     wishlist.items = wishlist.items.filter(
       (item) => item.product.id !== product.id
     );
+    wishlist.numberOfItems -= 1;
   } else {
     wishlist.items.push({ id: generateMockId(), product });
+    wishlist.numberOfItems += 1;
   }
-  wishlist.numberOfItems += 1;
+
   return wishlist;
 }
