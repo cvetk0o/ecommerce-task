@@ -16,10 +16,11 @@ const CartSummary: React.FC = () => {
   }
   const renderCartItems = () => {
     return cart.items.map((cartItem, index) => {
+      const shouldRenderDivider = cart.items.length !== index + 1;
       return (
         <div className={styles.cartItem__container} key={cartItem.id}>
           <CartItemComponent cartItem={cartItem} />
-          {cart.items.length !== index + 1 && <div className="divider" />}
+          {shouldRenderDivider && <div className="divider" />}
         </div>
       );
     });

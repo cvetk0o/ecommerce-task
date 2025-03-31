@@ -48,3 +48,20 @@ export interface CartContextType {
 }
 
 export type ToastType = "success" | "error" | "info";
+
+export type WishlistItem = {
+  id: string;
+  product: Product;
+};
+
+export type Wishlist = {
+  wishlistId: string;
+  numberOfItems: number;
+  items: WishlistItem[];
+};
+
+export interface IWhishlistContext {
+  wishlist: Wishlist;
+  isProductInWishlist: (productId: number) => boolean;
+  addProductToWishlist: (product: Product) => Promise<CartOperationResult>;
+}

@@ -14,7 +14,7 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
   return (
     <div className={styles.productCard}>
       <div className={styles.actionButtons__mobile}>
-        <AddToFavourites inFavourites={false} />
+        <AddToFavourites product={product} />
       </div>
       <div className={styles.productCard__imgContainer}>
         <Image
@@ -45,7 +45,7 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
           <div className={styles.actionButtons}>
             <AddToCartButton product={product} />
             <div className={styles.hideOnMobile}>
-              <AddToFavourites inFavourites={false} />
+              <AddToFavourites product={product} />
             </div>
           </div>
         </div>
