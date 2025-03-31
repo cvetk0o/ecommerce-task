@@ -40,6 +40,7 @@ const ApplyPromoCode: React.FC = () => {
   }, [isPromoCodeApplied, isSuccess]);
   return (
     <div
+      data-testid="apply-discount"
       className={`${styles.applyDiscount} ${isSuccess ? styles.success : ""}`}
     >
       <TextInput
