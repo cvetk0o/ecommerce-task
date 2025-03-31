@@ -1,0 +1,22 @@
+.cartIcon {
+    position: relative;
+}
+
+.cartIcon__numberOfProducts {
+    position: absolute;
+    background-color: var(--red);
+    color: var(--white);
+    border-radius: 10rem;
+    width: fit-content;
+    height: fit-content;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: .3rem;
+    top: -1rem;
+    right: -1rem;
+}
+
+.cartIcon__numberOfProducts p {
+    line-height: 100%;
+    text-align: center;
+}

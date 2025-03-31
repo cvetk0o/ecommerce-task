@@ -7,6 +7,7 @@ import MainLogo from "../MainLogo";
 import { Category } from "@/services/categories/types";
 import { useState } from "react";
 import CartButton from "../CartButton";
+import WishlistButton from "../WishlistButton";
 
 interface INavigationBar {
   categories: Category[];
@@ -54,6 +55,7 @@ const NavigationBar: React.FC<INavigationBar> = ({ categories }) => {
         </div>
         <div className={styles.navBar__actionButtons}>
           <CartButton />
+          <WishlistButton />
           <ThemeToggle />
         </div>
       </div>
