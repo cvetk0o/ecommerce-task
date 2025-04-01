@@ -1,0 +1,10 @@
+.footer {
+  width: 100%;
+  background-color: var(--lightGray);
+  padding: 3rem 6rem 6rem 6rem;
+}
+
+.footer__content {
+  width: 100%;
+  max-width: 152rem;
+}
