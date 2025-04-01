@@ -27,7 +27,7 @@ const ApplyPromoCode: React.FC = () => {
     if (error) {
       setPromoCode("");
       applyPromoCode("");
-      showToast("Failed to apply promo code", "error");
+      showToast("Wrong promo code", "error");
       return;
     }
   };
