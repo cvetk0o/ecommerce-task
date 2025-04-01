@@ -19,6 +19,7 @@ export default async function CategoryPage({
       <ProductsSection
         products={categoryDetails.products}
         sectionTitle={"All Products"}
+        additionalInfo={`${categoryDetails.products.length} Products Available`}
       />
     </>
   );
