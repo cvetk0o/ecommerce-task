@@ -12,7 +12,10 @@ export default async function CategoryPage({
   const categoryDetails = await getCategoryDetails(slug);
   return (
     <>
-      <MarkedText text={categoryDetails.name} element={MarkedTextElements.h1} />
+      <MarkedText
+        text={categoryDetails.name.toUpperCase()}
+        element={MarkedTextElements.h1}
+      />
       <ProductsSection
         products={categoryDetails.products}
         sectionTitle={"All Products"}
