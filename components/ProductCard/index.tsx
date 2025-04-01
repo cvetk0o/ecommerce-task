@@ -22,7 +22,7 @@ const ProductCard: React.FC<IProductCard> = ({ product }) => {
           alt={product.title}
           fill
           className={styles.productCard__img}
-          sizes="(max-width: 576px) 163px, 260px"
+          sizes="(max-width: 576px) 163px,(max-width: 1500px) 220px, 260px"
           priority
         />
       </div>
