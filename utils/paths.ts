@@ -8,6 +8,9 @@ const paths = {
   cart() {
     return "/cart";
   },
+  wishlist() {
+    return "/wishlist";
+  },
 };
 
 export default paths;

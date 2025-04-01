@@ -90,3 +90,15 @@
         display: none;
     }
 }
+
+@media (min-width: 1200px) and (max-width: 1369px) {
+    .productCard {
+        max-width: 24.8rem;
+    }
+}
+
+@media (min-width: 1370px) and (max-width: 1500px) {
+    .productCard {
+        max-width: 28.8rem;
+    }
+}

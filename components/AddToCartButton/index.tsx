@@ -20,7 +20,7 @@ const AddToCartButton: React.FC<IAddToCartButton> = ({
   const { addProductToCart, isProductInCart } = useCartContext();
   const { showToast } = useToast();
   const addedToCart = isProductInCart(product.id);
-  const handleRemoveCartItem = async () => {
+  const handleAddCartItem = async () => {
     const [error] = await addProductToCart(product);
 
     if (error) {
@@ -31,7 +31,7 @@ const AddToCartButton: React.FC<IAddToCartButton> = ({
     <Button
       isLoading={!!isLoading}
       className={addedToCart ? styles.buttonAdded : ""}
-      onClick={handleRemoveCartItem}
+      onClick={handleAddCartItem}
     >
       <div className={styles.addToCart}>
         <Image
