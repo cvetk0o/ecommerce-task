@@ -67,10 +67,7 @@ describe("ApplyPromoCode", () => {
       fireEvent.click(applyButton);
     });
 
-    expect(mockShowToast).toHaveBeenCalledWith(
-      "Failed to apply promo code",
-      "error"
-    );
+    expect(mockShowToast).toHaveBeenCalledWith("Wrong promo code", "error");
     expect(input).toHaveValue("");
   });
 
